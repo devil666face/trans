@@ -1,0 +1,10 @@
+services:
+  trans:
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+    image: trans:go
+    volumes:
+      - ./bin:/build/bin
+    container_name: trans-go
+    network_mode: host
