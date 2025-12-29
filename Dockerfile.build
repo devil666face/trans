@@ -21,4 +21,4 @@ WORKDIR /build
 
 COPY . .
 
-CMD ["task","in-docker-build"]
+CMD ["task",".build"]

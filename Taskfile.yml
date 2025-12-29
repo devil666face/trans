@@ -40,16 +40,16 @@ tasks:
       - strip {{.app_bin}}
       - objcopy --strip-unneeded {{.app_bin}}
 
-  in-docker-build:
+  .build:
     deps:
       - build
     silent: false
     cmds:
       - rm -f /build/bin/*
-      - upx --best --ultra-brute {{.app_bin}} -o {{.app_bin}}_upx
+      - upx {{.app_bin}}
       - mv {{.app_bin}}* /build/bin
 
-  docker.build:
+  release:
     desc: build bin via docker
     deps:
       - setup

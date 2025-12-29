@@ -41,7 +41,7 @@ func main() {
 		target string
 	)
 
-	translateCmd := &cobra.Command{
+	translate := &cobra.Command{
 		Use:     "translate [text]",
 		Aliases: []string{"t"},
 		Short:   "Translate input from stdin or argument",
@@ -63,8 +63,8 @@ func main() {
 		RunE: translate(&target, &source),
 	}
 
-	translateCmd.Flags().StringVarP(&source, "source", "s", "auto", "Source language")
-	translateCmd.Flags().StringVarP(&target, "target", "t", "ru", "Target language")
+	translate.Flags().StringVarP(&source, "source", "s", "auto", "Source language")
+	translate.Flags().StringVarP(&target, "target", "t", "ru", "Target language")
 
 	list := &cobra.Command{
 		Use:     "list",
@@ -92,7 +92,7 @@ func main() {
 		},
 	}
 
-	cmd.AddCommand(translateCmd)
+	cmd.AddCommand(translate)
 	cmd.AddCommand(list)
 
 	if err := fang.Execute(context.Background(), cmd); err != nil {

@@ -1,5 +1,7 @@
 package trans
 
+// https://github.com/g17ui/translate/blob/master/src/main.rs
+
 import (
 	"encoding/json"
 	"fmt"
