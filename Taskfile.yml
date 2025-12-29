@@ -1,0 +1,39 @@
+version: "3"
+
+dotenv: ["build.env"]
+
+vars:
+  gobin: go
+  ldflags: "-extldflags '-static' -w -s -buildid="
+  gcflags: "all=-trimpath={{.PWD}} -dwarf=false -l"
+  asmflags: "all=-trimpath={{.PWD}}"
+  bin: "{{.PWD}}/bin"
+  app: "trans"
+
+env:
+  COMPOSE_BAKE: true
+  CGO_ENABLED: 0
+  GOARCH: amd64
+  GOOS: linux
+
+tasks:
+  setup:
+    desc: set up the environment
+    silent: true
+    cmds:
+      - mkdir -p {{.bin}}
+
+  build:
+    desc: common build
+    deps: [setup]
+    cmds:
+      - >
+        {{.gobin}} build
+        -tags netgo
+        -ldflags="{{.ldflags}}"
+        -trimpath
+        -gcflags="{{.gcflags}}"
+        -asmflags="{{.asmflags}}"
+        -o {{.bin}}/{{.app}} cmd/{{.app}}/main.go
+      - strip {{.bin}}/{{.app}}
+      - objcopy --strip-unneeded {{.bin}}/{{.app}}
