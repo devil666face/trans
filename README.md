@@ -12,18 +12,6 @@ A small command‑line client for Google Translate. It lets you translate text d
 
 Under the hood it uses the unofficial HTTP endpoint `https://translate.googleapis.com/translate_a/single`.
 
-## Installation
-
-From the repository root:
-
-```bash
-go build -o trans ./cmd/trans
-# or
-go install ./cmd/trans
-```
-
-After building, run `./trans` (or just `trans` if the binary is on your `$PATH`).
-
 ## Command overview
 
 ```bash
