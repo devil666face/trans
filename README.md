@@ -71,6 +71,12 @@ Translate text from stdin (source language is auto‑detected):
 echo "How are you?" | trans translate -t ru
 ```
 
+Or with stderr too
+
+```bash
+task build 2>&1 | trans t
+```
+
 If you do not provide the `[text]` argument and there is no data in stdin, the command returns an error: `no input text provided`.
 
 ## Listing languages

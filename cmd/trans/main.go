@@ -55,6 +55,9 @@ func main() {
   # Translate text from stdin (source language is detected automatically)
   echo "How are you?" | trans translate -t ru
 
+  # Translate with stderr
+  task build 2>&1 | trans t
+
   # Explicitly specify source and target languages (short flags)
   trans translate -s en -t de "Good morning"
 
